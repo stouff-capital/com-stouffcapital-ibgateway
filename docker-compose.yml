@@ -1,0 +1,25 @@
+tws:
+  image: gchevalley/com-stouffcapital-ibgateway
+  ports:
+    - "4003:4003"
+    - "5900:5900"
+  volumes:
+    - ./IBController.ini:/root/IBController/IBController.ini
+    - ./jts.ini:/root/Jts/jts.ini
+  environment:
+    - TZ=Australia/Adelaide
+    # Variables pulled from /IBController/IBControllerGatewayStart.sh
+    - VNC_PASSWORD=your-password
+    - TWS_MAJOR_VRSN=963
+    - IBC_INI=/root/IBController/IBController.ini
+    - TRADING_MODE=paper
+    - IBC_PATH=/root/IBController
+    - TWS_PATH=/root/Jts
+    - TWS_CONFIG_PATH=/root/Jts
+    - LOG_PATH=/root/IBController/Logs
+    - TWSUSERID=edemo
+    - TWSPASSWORD=demouser
+    - FIXUSERID=
+    - FIXPASSWORD=
+    - JAVA_PATH=
+    - APP=GATEWAY

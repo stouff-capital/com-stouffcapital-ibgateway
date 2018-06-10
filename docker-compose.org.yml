@@ -1,0 +1,33 @@
+version: '2'
+services:
+  ibgw:
+    build:
+      context: ibgateway
+      dockerfile: Dockerfile
+    image: gchevalley/com-stouffcapital-ibgateway
+    container_name: ibgw
+    restart: always
+    environment:
+      - "VNC_PASSWORD=password"
+    ports:
+      - "4003:4003"
+      - "5900:5900"
+  ibrest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hamx0r/ibrest:latest
+    container_name: ibrest
+    restart: always
+    environment:
+      - ID_SECRET_KEY
+      - IBGW_PORT_4003_TCP_ADDR=ibgw
+      - IBGW_CLIENT_ID=0
+      - IBREST_HOST=0.0.0.0
+      - IBREST_PORT=443
+    links:
+      - ibgw
+    ports:
+      - "443:443"
+    depends_on:
+      - "ibgw"

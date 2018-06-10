@@ -9,7 +9,7 @@ spec:
   - port: 4003
   selector:
     app: ib
-    tier: gateway-api
+    tier: gateway
   type: NodePort
 ---
 apiVersion: v1
@@ -23,7 +23,7 @@ spec:
   - port: 5900
   selector:
     app: ib
-    tier: gateway-vnc
+    tier: gateway
   type: NodePort
 ---
 apiVersion: apps/v1beta1
